@@ -3,8 +3,8 @@
   do -> 
     for i in ['div','span','h1', 'h2']
       do (i) ->
-        for i in document.getElementsByTagName(i)
-          i.removeAttribute "style"
+        for ele in document.getElementsByTagName(i)
+          ele.removeAttribute "style"
   newSS = undefined
   styles = 
   "
@@ -108,7 +108,6 @@
     textarea, input, select {
       display:none !important;
     }
-
   "
   if document.createStyleSheet
     document.createStyleSheet "javascript:'" + styles + "'"

@@ -10,12 +10,12 @@
       for (_i = 0, _len = _ref.length; _i < _len; _i++) {
         i = _ref[_i];
         _results.push((function(i) {
-          var _j, _len1, _ref1, _results1;
+          var ele, _j, _len1, _ref1, _results1;
           _ref1 = document.getElementsByTagName(i);
           _results1 = [];
           for (_j = 0, _len1 = _ref1.length; _j < _len1; _j++) {
-            i = _ref1[_j];
-            _results1.push(i.removeAttribute("style"));
+            ele = _ref1[_j];
+            _results1.push(ele.removeAttribute("style"));
           }
           return _results1;
         })(i));
