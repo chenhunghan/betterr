@@ -1,5 +1,10 @@
 (->
   console.log navigator #navigator.platform: "MacIntel"
+  do -> 
+    for i in ['div','span','h1', 'h2']
+      do (i) ->
+        for i in document.getElementsByTagName(i)
+          i.removeAttribute "style"
   newSS = undefined
   styles = 
   "
