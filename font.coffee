@@ -1,4 +1,7 @@
 (->
+  remove_style = (ele) ->
+    if ele.hasAttribute 'style'
+      ele.removeAttribute 'style'
   do -> 
     for i in ['h1', 'h2', 'h3', 'h4', 'h5', 'h6']
       do (i) ->
@@ -12,21 +15,19 @@
             text = ele.innerText.match(/\S+/g)
             if text isnt null
               switch i
-                when 'span' or 'div'
+                when 'div'
                   child = ele.firstElementChild or ele.firstChild
-                  console.log child
-                  if child is null
-                    #console.log '* in div or span'
-                    #console.log text.toString().split(',').join(" ")
-                    #console.log '---------'
-                    if ele.hasAttribute 'style'
-                      ele.removeAttribute 'style'
-                when 'p' or 'article'
+                  grandson = child.firstElementChild or child.firstChild
+                  #grandgrandson = grandson.firstElementChild or grandson.firstChild
+                  if grandson is null
+                    remove_style(ele)
+                when 'p'
+                  remove_style(ele)
+                when 'span'
                   #console.log '* in p or article'
                   #console.log text.toString().split(',').join(" ")
                   #console.log '---------'
-                  if ele.hasAttribute 'style'
-                    ele.removeAttribute 'style'
+                  remove_style(ele)
   newSS = undefined
   styles = 
   "
