@@ -17,16 +17,31 @@
               switch i
                 when 'div'
                   child = ele.firstElementChild or ele.firstChild
-                  grandson = child.firstElementChild or child.firstChild
-                  #grandgrandson = grandson.firstElementChild or grandson.firstChild
-                  if grandson is null
+                  grandson = () -> 
+                    if child isnt null
+                      return child.firstElementChild or child.firstChild
+                  grandgrandson = ->
+                    if grandson() isnt null
+                      return grandson.firstElementChild or grandson.firstChild
+                  if child is null or grandson() is null or grandgrandson() is null
                     remove_style(ele)
+                  if child is null
+                    console.log '* in div'
+                    console.log text.toString().split(',').join(" ")
+                    console.log '---------'
                 when 'p'
+                  console.log '* in p'
+                  console.log text.toString().split(',').join(" ")
+                  console.log '---------'
                   remove_style(ele)
                 when 'span'
-                  #console.log '* in p or article'
-                  #console.log text.toString().split(',').join(" ")
-                  #console.log '---------'
+                  console.log '* in span'
+                  console.log text.toString().split(',').join(" ")
+                  console.log '---------'
+                  remove_style(ele)
+                when 'li'
+                  remove_style(ele)
+                when 'article'
                   remove_style(ele)
   newSS = undefined
   styles = 
@@ -49,9 +64,15 @@
     body {
       background: #F7F7F7 !important; 
     }
-    p {
-      color: black !important;
+    p, span, a, :link, :link *{
       line-height: 2 !important;
+      -webkit-text-shadow: 0px 0px 0 transparent !important;
+      -moz-text-shadow: 0px 0px 0 transparent !important;
+      text-shadow: 0px 0px 0 transparent !important;
+      font-weight: normal !important;
+    }
+    p, span {
+      color: black !important;
     }
     ::selection {
       background: #d32913 !important;
@@ -60,22 +81,53 @@
     h1 {
     }
     h2, h3, h4, h5, h6 {
-      display:none;
     }
-    :link, :link *{
+    em, b {
+    }
+    a, :link, :link *{
       cursor: pointer !important;
-      color: #268bd2 !important;
-    }
-    :link:hover, :link *:hover {
-        color: gray !important;
     }
     a {
+      color: #1E74B1 !important;
       padding-bottom: 2px !important;
-      border-bottom: 1px dashed #93a1a1 !important;
+      border-bottom: 1px dashed #CCE1E1 !important;
       text-decoration: none !important;
+    }
+    a:hover {
+      color: #268bd2 !important;
+      border-bottom: 1px dashed #DCF5F5 !important;
     }
     :visited, :visited * {
         color: #175A8B !important;
+    }
+
+    ol, ul {
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+    li{
+      list-style-type: none !important;
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+    pre code, pre, code {
+      font-family: 'Source Code Pro', Consolas, Monaco, 'Andale Mono', monospace !important;
+      font-size: 14px !important;
+      line-height: 2 !important;
+    }
+    article, #contents, #content, #main, main, .content, .container-fluid, .container, .article, .middle {
+      margin: 0 !important;
+      padding: 0 !important;
+      background: #FBFBFB !important;
+      margin-top: 25px !important;
+      margin-left: 10px !important;
+    }
+    #contents img, #content img, .main img, #main img, .content img, .container-fluid img, .container img, article img, .article img, .middle img {
+      display:block !important;
+      opacity: 0.9 !important;
+    }
+    #contents a, #content a, .main a, #main a, .content a, .container-fluid a, .container a, article a, .article a, .middle a {
+      display:inline !important;
     }
     .social_buttons, .social-buttons, .social, .socialshare, .social_share, .social-share, .social-links {
       display:none !important;
@@ -92,41 +144,8 @@
     footer, header, #header, .header, #footer, .footer, bs-header, bs-footer, .topbar {
       display:none !important;
     }
-    pre code {
-      font-family: 'Source Code Pro', Consolas, Monaco, 'Andale Mono', monospace !important;
-      font-size: 12px !important;
-      line-height: 2 !important;
-    }
-    pre, code{
-      font-family: 'Source Code Pro', Consolas, Monaco, 'Andale Mono', monospace !important;
-    }
     .Icon, i, img, #logo, .logo{
       display:none !important;
-    }
-    a {
-      display:none !important;
-    }
-    article, #contents, #content, #main, main, .content, .container-fluid, .container, .article, .middle {
-      margin: 0 !important;
-      padding: 0 !important;
-      background: #FBFBFB !important;
-      margin-top: 25px !important;
-      margin-left: 10px !important;
-    }
-    #contents img, #content img, .main img, #main img, .content img, .container-fluid img, .container img, article img, .article img, .middle img {
-      display:block !important;
-      opacity: 0.9 !important;
-    }
-    #contents a, #content a, .main a, #main a, .content a, .container-fluid a, .container a, article a, .article a, .middle a {
-      display:inline !important;
-    }
-    ol, ul {
-      margin: 0 !important;
-      padding: 0 !important;
-    }
-    li{
-      margin: 0 !important;
-      padding: 0 !important;
     }
     textarea, input, select {
       display:none !important;
@@ -153,13 +172,13 @@
   R = (a) ->
     ona = "on" + a
     if window.addEventListener
-      window.addEventListener a, ((e) ->
+      window.addEventListener a, (e) ->
         n = e.originalTarget
         while n
           n[ona] = null
           n = n.parentNode
         return
-      ), true
+      , true
     window[ona] = null
     document[ona] = null
     document.body[ona] = null if document.body
