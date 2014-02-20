@@ -1,10 +1,32 @@
 (->
-  console.log navigator #navigator.platform: "MacIntel"
   do -> 
-    for i in ['div','span','h1', 'h2']
+    for i in ['h1', 'h2', 'h3', 'h4', 'h5', 'h6']
       do (i) ->
         for ele in document.getElementsByTagName(i)
-          ele.removeAttribute "style"
+          if ele.hasAttribute 'style' then ele.removeAttribute 'style'
+  do ->
+    for i in ['span', 'article', 'p', 'div']
+      do (i) ->
+        for ele in document.getElementsByTagName(i)
+          do (ele) ->
+            text = ele.innerText.match(/\S+/g)
+            if text isnt null
+              switch i
+                when 'span' or 'div'
+                  child = ele.firstElementChild or ele.firstChild
+                  console.log child
+                  if child is null
+                    #console.log '* in div or span'
+                    #console.log text.toString().split(',').join(" ")
+                    #console.log '---------'
+                    if ele.hasAttribute 'style'
+                      ele.removeAttribute 'style'
+                when 'p' or 'article'
+                  #console.log '* in p or article'
+                  #console.log text.toString().split(',').join(" ")
+                  #console.log '---------'
+                  if ele.hasAttribute 'style'
+                    ele.removeAttribute 'style'
   newSS = undefined
   styles = 
   "
@@ -117,14 +139,14 @@
     newSS.href = "data:text/css," + escape(styles)
     document.getElementsByTagName("head")[0].appendChild newSS
 
-  s = document.getElementById("tongwenlet_tw")
-  document.body.removeChild s if s?
-  s = document.createElement("script")
-  s.language = "javascript"
-  s.type = "text/javascript"
-  s.src = "http://tongwen.openfoundry.org/src/bookmarklet/bookmarklet_tw.js"
-  s.id = "tongwenlet_tw"
-  document.body.appendChild s
+  #s = document.getElementById("tongwenlet_tw")
+  #document.body.removeChild s if s?
+  #s = document.createElement("script")
+  #s.language = "javascript"
+  #s.type = "text/javascript"
+  #s.src = "http://tongwen.openfoundry.org/src/bookmarklet/bookmarklet_tw.js"
+  #s.id = "tongwenlet_tw"
+  #document.body.appendChild s
 
   # remove anti-copy
   R = (a) ->
