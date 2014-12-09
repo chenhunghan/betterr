@@ -1,0 +1,1 @@
+var minify = require('minify');

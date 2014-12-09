@@ -1,23 +1,15 @@
 {
   "name": "betterr",
-  "version": "0.0.1",
-  "homepage": "https://github.com/chenhunghan/betterr",
-  "description": "a tiny bookmarklet aims to enhance reading experience for muti-language users.",
-  "main": "index.html",
-  "keywords": [
-    "font",
-    "bookmarklet",
-    "readability"
-  ],
-  "authors": [
-    "Chen Hung-Han"
-  ],
+  "description": "A tiny bookmarket aims to enhance reader experience for muti-languages users.",
+  "version": "0.0.0",
+  "homepage": "https://github.com/angular/angular-seed",
   "license": "MIT",
-  "ignore": [
-    "**/.*",
-    "node_modules",
-    "bower_components",
-    "test",
-    "tests"
-  ]
+  "private": false,
+  "dependencies": {
+    "angular": "1.2.x",
+    "angular-route": "1.2.x",
+    "angular-loader": "1.2.x",
+    "angular-mocks": "~1.2.x",
+    "html5-boilerplate": "~4.3.0"
+  }
 }
