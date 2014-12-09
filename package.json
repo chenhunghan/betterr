@@ -1,0 +1,31 @@
+{
+  "name": "betterr",
+  "version": "0.0.1",
+  "description": "a tiny bookmarklet aims to enhance reading experience for muti-language users. ",
+  "main": "index.html",
+  "scripts": {
+    "test": "gulp test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/chenhunghan/betterr"
+  },
+  "keywords": [
+    "font",
+    "bookmarklet",
+    "readability"
+  ],
+  "author": "Chen, Hung-Han",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/chenhunghan/betterr/issues"
+  },
+  "homepage": "https://github.com/chenhunghan/betterr",
+  "dependencies": {
+    "coffee-script": "^1.8.0"
+  },
+  "devDependencies": {
+    "browserify": "^7.0.0",
+    "uglifyjs": "^2.3.6"
+  }
+}

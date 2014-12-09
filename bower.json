@@ -1,0 +1,23 @@
+{
+  "name": "betterr",
+  "version": "0.0.1",
+  "homepage": "https://github.com/chenhunghan/betterr",
+  "description": "a tiny bookmarklet aims to enhance reading experience for muti-language users.",
+  "main": "index.html",
+  "keywords": [
+    "font",
+    "bookmarklet",
+    "readability"
+  ],
+  "authors": [
+    "Chen Hung-Han"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
