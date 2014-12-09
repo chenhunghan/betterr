@@ -1,3 +1,5 @@
+#remember to us coffee -bwc --no-header to compile this file
+`javascript: `
 (->
   remove_style = (ele) ->
     if ele.hasAttribute 'style'
@@ -52,7 +54,7 @@
       unicode-range: U+2014, U+00B7, U+2026;
     }
     * { 
-      font-size: 14pt !important;
+      font-size: 12pt !important;
       font-family: 'TIBch', 'Classic Grotesque W01', 'Helvetica Neue', Arial, 'Hiragino Sans GB', 'Microsoft YaHei', 'WenQuanYi Micro Hei', sans-serif; !important
       -webkit-font-smoothing: subpixel-antialiased !important;
       background-image: url('./null.png') !important;
@@ -65,7 +67,7 @@
       background: #F7F7F7 !important; 
     }
     p, span, a, :link, :link *{
-      line-height: 2 !important;
+      line-height: 1.4 !important;
       -webkit-text-shadow: 0px 0px 0 transparent !important;
       -moz-text-shadow: 0px 0px 0 transparent !important;
       text-shadow: 0px 0px 0 transparent !important;
@@ -100,16 +102,6 @@
     :visited, :visited * {
         color: #175A8B !important;
     }
-
-    ol, ul {
-      margin: 0 !important;
-      padding: 0 !important;
-    }
-    li{
-      list-style-type: none !important;
-      margin: 0 !important;
-      padding: 0 !important;
-    }
     pre code, pre, code {
       font-family: 'Source Code Pro', Consolas, Monaco, 'Andale Mono', monospace !important;
       font-size: 14px !important;
@@ -132,19 +124,10 @@
     .social_buttons, .social-buttons, .social, .socialshare, .social_share, .social-share, .social-links {
       display:none !important;
     }
-    button, .btn {
-      display:none !important;
-    }
-    nav, .nav, #navigation, .navigation, .navbar, #navbar, aside, .aside, .sidebar-container, .sidebar, .bar, #sidebar-wrapper, #sidebar, .left, .right{
-      display:none !important;
-    }
     iframe, object, applet, embed{
       display:none !important;
     }
     footer, header, #header, .header, #footer, .footer, bs-header, bs-footer, .topbar {
-      display:none !important;
-    }
-    .Icon, i, img, #logo, .logo{
       display:none !important;
     }
     textarea, input, select {
