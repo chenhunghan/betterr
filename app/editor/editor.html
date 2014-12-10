@@ -1,2 +1,39 @@
-<input type="text" ng-model="coffee">
-<a href="{{coffee}}">ddd</a>
+
+
+<a ng-hide="err!=undefined" href="{{bookmarkletUrl}}">betterr!</a>
+
+<p>，「」「「「』』』」，，，，，。。。。幹</p>
+
+<p>研究發現，全球狂銷的蘋果iPad超省電。根據非營利組織EPRI（電力研究中心），iPad一年電費只需1.36美刀（U.S. Dollar）。</p>
+
+<p>希臘字母游離輻射可以區分為高能粒子流與高能電磁波，其中高能粒子流包含α粒子、β粒子（+/−）與中子，高能電磁波包含γ射線、X射線與特定波長的紫外線。</p>
+
+<p>西里爾字母我有學過українська мова，所以русский язык我可以稍微看得懂。</p>
+
+<p>
+  <cite>《漢語語音學》</cite>探討了諸多同「漢語語音學」相關的學術議題，值得喜歡語言的同好們一讀。
+
+<p lang='en'>
+  <cite>Webster Dictionary</cite> defines ‘marriage’ as…
+
+<div class="coffeeEditor" ui-ace="{ 
+	mode: 'coffee', 
+	theme: 'monokai',
+	showGutter: false,
+	useWrapMode: true,
+	onChange: onEditorChange
+}" ng-model="coffee"></div>
+
+<div class="CSSEditor" ui-ace="{ 
+	mode: 'css', 
+	theme: 'monokai',
+	showGutter: false,
+	useWrapMode: true,
+	onChange: onEditorChange
+}" ng-model="css"></div>
+
+<!-- <pre prism source="{{coffee}}" class="language-coffeescript"></pre> -->
+
+
+<span ng-show="err!=undefined">Syntax Error: {{err.message}} at column {{err.location.first_column}}, line {{err.location.first_line}}</span>
+<p ng-hide="err!=undefined">{{bookmarkletUrl}}"</p>

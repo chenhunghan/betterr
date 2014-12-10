@@ -28,3 +28,14 @@
   content: "";
   padding: 0;
 }
+
+.coffeeEditor {
+  float: left;
+  height: 30em;
+  width: 42%;
+}
+
+.CSSEditor { 
+  height: 30em;
+  width: 42%;
+}

@@ -10,6 +10,10 @@
     "angular-route": "1.2.x",
     "angular-loader": "1.2.x",
     "angular-mocks": "~1.2.x",
-    "html5-boilerplate": "~4.3.0"
+    "html5-boilerplate": "~4.3.0",
+    "ace": "~1.1.8",
+    "angular-ui-ace": "bower",
+    "string": "~3.0.0",
+    "Han": "~3.0.2"
   }
 }
