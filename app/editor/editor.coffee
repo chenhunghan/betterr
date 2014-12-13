@@ -12,9 +12,16 @@ angular.module("betterr.editor", ["ngRoute", 'ui.ace']).config([
 	"$scope"
 	"$http"
 	($scope, $http) ->
+
+		uglify = (js) ->
+			ast = UglifyJS.parse js
+			stream = UglifyJS.OutputStream()
+			ast.print stream
+			uglified = stream.toString()
+			return uglified
+
 		compile = (coffee, css) ->
 			COFFEE = new S coffee
-
 			#replace all ' to "
 			CSS = new S css
 			CSS = CSS.replaceAll("'",'"')
@@ -34,34 +41,25 @@ angular.module("betterr.editor", ["ngRoute", 'ui.ace']).config([
 				'no-header': true
 			try
 				compiled = CoffeeScript.compile(data, cf_setting)
-
-				$http.get('//cdnjs.cloudflare.com/ajax/libs/Han/3.0.2/han.min.js').success((data, status, headers, config) ->
-					data = data.concat('\n\n')
-					data = data.concat compiled
-					ast = UglifyJS.parse data
-					stream = UglifyJS.OutputStream()
-					ast.print stream
-					uglified = stream.toString()
-					jshead = "javascript: "
-					result = jshead.concat uglified
-					
-					$scope.bookmarkletUrl = result
-					#console.log result
-				).error (data, status, headers, config) ->
-					console.log dara
+				uglified = uglify(compiled)
+				final = new S uglified
+				final = final.replaceAll /\s/g, "%20"
+				final = final.s
+				result = "javascript:%20".concat final
+				$scope.bookmarkletUrl = result
 			catch e
 				$scope.err = e
 		$http.get("editor/default.coffee").success((data, status, headers, config) ->
 			$scope.coffee = data
 			$http.get("//cdnjs.cloudflare.com/ajax/libs/Han/3.0.2/han.css").success((data, status, headers, config) ->
-					$scope.css = data
-					compile $scope.coffee, $scope.css
+				$scope.css = data
+				compile angular.copy($scope.coffee), angular.copy($scope.css)
 			).error (data, status, headers, config) ->
 				console.log data
 		).error (data, status, headers, config) ->
 			console.log data
 		$scope.onEditorChange = () ->
-			compile $scope.coffee, $scope.css
+			compile angular.copy($scope.coffee), angular.copy($scope.css)
 ]).directive "prism", [
   "$compile"
   ($compile) ->

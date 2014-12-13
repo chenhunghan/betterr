@@ -14,6 +14,7 @@
     "ace": "~1.1.8",
     "angular-ui-ace": "bower",
     "string": "~3.0.0",
-    "Han": "~3.0.2"
+    "Han": "~3.0.2",
+    "franc": "~0.7.0"
   }
 }

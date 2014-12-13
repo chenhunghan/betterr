@@ -4,7 +4,6 @@
 angular.module("betterr", [
   "ngRoute"
   "betterr.editor"
-  "myApp.view2"
   "myApp.version"
 ]).config [
   "$routeProvider"

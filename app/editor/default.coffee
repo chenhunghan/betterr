@@ -1,4 +1,4 @@
-(->
+do ->
   s = document.getElementById("tongwenlet_tw2")
   document.body.removeChild s  if s?
   s = document.createElement("script")
@@ -8,16 +8,27 @@
   s.id = "tongwenlet_tw2"
   document.body.appendChild s
   return
-)()
 
+do ->
+  s = document.createElement("script")
+  s.language = "javascript"
+  s.type = "text/javascript"
+  s.src = "//cdnjs.cloudflare.com/ajax/libs/Han/3.0.2/han.min.js"
+  document.body.appendChild s
+  return
 
 document.getElementsByTagName('html')[0].setAttribute("lang", "zh-Hant-TW")
 
 remove_style = (ele) ->
   if ele.hasAttribute 'style'
     ele.removeAttribute 'style'
-  Han(ele).initCond().renderElem().renderDecoLine().renderJiya().renderHWS(true).correctBasicBD(true).substCombLigaWithPUA()
-  
+  loopsiloop = ->
+    setTimeout (->
+      try
+        Han(ele).initCond().renderElem().renderDecoLine().renderJiya().renderHWS(true).correctBasicBD(true).substCombLigaWithPUA()
+      catch e
+        loopsiloop()
+    ), 5000
 do -> 
   for i in ['h1', 'h2', 'h3', 'h4', 'h5', 'h6']
     do (i) ->

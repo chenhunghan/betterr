@@ -11,9 +11,17 @@
     }
   ]).controller("editorCtrl", [
     "$scope", "$http", function($scope, $http) {
-      var compile;
+      var compile, uglify;
+      uglify = function(js) {
+        var ast, stream, uglified;
+        ast = UglifyJS.parse(js);
+        stream = UglifyJS.OutputStream();
+        ast.print(stream);
+        uglified = stream.toString();
+        return uglified;
+      };
       compile = function(coffee, css) {
-        var C, COFFEE, COFFE_PLUS_CSS, CSS, cf_setting, compiled, data, e, options;
+        var C, COFFEE, COFFE_PLUS_CSS, CSS, cf_setting, compiled, data, e, final, options, result, uglified;
         COFFEE = new S(coffee);
         CSS = new S(css);
         CSS = CSS.replaceAll("'", '"');
@@ -30,20 +38,12 @@
         };
         try {
           compiled = CoffeeScript.compile(data, cf_setting);
-          return $http.get('//cdnjs.cloudflare.com/ajax/libs/Han/3.0.2/han.min.js').success(function(data, status, headers, config) {
-            var ast, jshead, result, stream, uglified;
-            data = data.concat('\n\n');
-            data = data.concat(compiled);
-            ast = UglifyJS.parse(data);
-            stream = UglifyJS.OutputStream();
-            ast.print(stream);
-            uglified = stream.toString();
-            jshead = "javascript: ";
-            result = jshead.concat(uglified);
-            return $scope.bookmarkletUrl = result;
-          }).error(function(data, status, headers, config) {
-            return console.log(dara);
-          });
+          uglified = uglify(compiled);
+          final = new S(uglified);
+          final = final.replaceAll(/\s/g, "%20");
+          final = final.s;
+          result = "javascript:%20".concat(final);
+          return $scope.bookmarkletUrl = result;
         } catch (_error) {
           e = _error;
           return $scope.err = e;
@@ -53,7 +53,7 @@
         $scope.coffee = data;
         return $http.get("//cdnjs.cloudflare.com/ajax/libs/Han/3.0.2/han.css").success(function(data, status, headers, config) {
           $scope.css = data;
-          return compile($scope.coffee, $scope.css);
+          return compile(angular.copy($scope.coffee), angular.copy($scope.css));
         }).error(function(data, status, headers, config) {
           return console.log(data);
         });
@@ -61,7 +61,7 @@
         return console.log(data);
       });
       return $scope.onEditorChange = function() {
-        return compile($scope.coffee, $scope.css);
+        return compile(angular.copy($scope.coffee), angular.copy($scope.css));
       };
     }
   ]).directive("prism", [
