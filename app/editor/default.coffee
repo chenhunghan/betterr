@@ -15,13 +15,10 @@ do ->
   s.type = "text/javascript"
   s.src = "//cdnjs.cloudflare.com/ajax/libs/Han/3.0.2/han.min.js"
   document.body.appendChild s
+  document.getElementsByTagName('html')[0].setAttribute("lang", "zh-Hant-TW")
   return
 
-document.getElementsByTagName('html')[0].setAttribute("lang", "zh-Hant-TW")
-
-remove_style = (ele) ->
-  if ele.hasAttribute 'style'
-    ele.removeAttribute 'style'
+hanify = (ele) ->
   loopsiloop = ->
     setTimeout (->
       try
@@ -29,11 +26,15 @@ remove_style = (ele) ->
       catch e
         loopsiloop()
     ), 5000
+
+clean = (ele) ->
+  if ele.hasAttribute 'style' then ele.removeAttribute 'style'
 do -> 
   for i in ['h1', 'h2', 'h3', 'h4', 'h5', 'h6']
     do (i) ->
       for ele in document.getElementsByTagName(i)
-        if ele.hasAttribute 'style' then ele.removeAttribute 'style'
+        clean(ele)
+        hanify(ele)
 do ->
   for i in ['span', 'article', 'p', 'div']
     do (i) ->
@@ -45,23 +46,25 @@ do ->
               when 'div'
                 child = ele.firstElementChild or ele.firstChild
                 grandson = () -> 
-                  if child isnt null
-                    return child.firstElementChild or child.firstChild
+                  if child isnt null then return child.firstElementChild or child.firstChild
                 grandgrandson = ->
-                  if grandson() isnt null
-                    return grandson.firstElementChild or grandson.firstChild
+                  if grandson() isnt null then return grandson.firstElementChild or grandson.firstChild
                 if child is null or grandson() is null or grandgrandson() is null
-                  remove_style(ele)
-                if child is null
-                  return
+                  clean(ele)
+                  hanify(ele)
               when 'p'
-                remove_style(ele)
+                clean(ele)
+                hanify(ele)
               when 'span'
-                remove_style(ele)
+                clean(ele)
+                hanify(ele)
               when 'li'
-                remove_style(ele)
+                clean(ele)
+                hanify(ele)
               when 'article'
-                remove_style(ele)
+                clean(ele)
+                hanify(ele)
+
 newSS = undefined
 styles = CSSsource
 if document.createStyleSheet
@@ -71,8 +74,6 @@ else
   newSS.rel = "stylesheet"
   newSS.href = "data:text/css," + escape(styles)
   document.getElementsByTagName("head")[0].appendChild newSS
-
-
 
 # remove anti-copy
 R = (a) ->
