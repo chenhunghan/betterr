@@ -13,7 +13,7 @@ do ->
   s = document.createElement("script")
   s.language = "javascript"
   s.type = "text/javascript"
-  s.src = "//cdnjs.cloudflare.com/ajax/libs/Han/3.0.2/han.min.js"
+  s.src = "//cdnjs.cloudflare.com/ajax/libs/Han/3.2.5/han.min.js"
   document.body.appendChild s
   document.getElementsByTagName('html')[0].setAttribute("lang", "zh-Hant-TW")
   return
@@ -29,6 +29,7 @@ hanify = (ele) ->
 
 clean = (ele) ->
   if ele.hasAttribute 'style' then ele.removeAttribute 'style'
+
 do -> 
   for i in ['h1', 'h2', 'h3', 'h4', 'h5', 'h6']
     do (i) ->

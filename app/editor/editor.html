@@ -1,46 +1,30 @@
 
+<div>
+    <span class="bookmarklet"><a ng-hide="err!=undefined" href="{{bookmarkletUrl}}">betterr!</a></span>
+    <!--<ul>-->
+    <!--<li><input type="checkbox" ng-model="hancss"><label>加入漢字標準格式 Han.css</label></li>-->
+        <!--<li><input type="checkbox" ng-model="hanjs"><label>加入漢字標準格式 Han.js</label></li>-->
+    <!--<li><input type="checkbox" ng-model="tongwens2t"><label>加入同文堂簡轉正</label></li>-->
+        <!--<li><input type="checkbox" ng-model="tongwent2s"><label>加入同文堂正轉簡</label></li>-->
+    <!--</ul>-->
+    <div class="compile-btn">
+    <button ng-click='compile()'>Compile Bookmarklet</button>
+    <span ng-show="err!=undefined">Compile Error: {{err.message}} at column {{err.location.first_column}}, line {{err.location.first_line}}</span>
+</div>
+</div>
 
-<a ng-hide="err!=undefined" href="{{bookmarkletUrl}}">betterr!</a>
-
-<p class='test'>，「」「「「』』』」，，，薅，，薅。。。喝。</p>
-
-<p>研究發現，全球狂銷的蘋果iPad超省電。根據非營利組織EPRI（電力研究中心），iPad一年電費只需1.36美刀（U.S. Dollar）。</p>
-
-<p>希臘字母游離輻射可以區分為高能粒子流與高能電磁波，其中高能粒子流包含α粒子、β粒子（+/−）與中子，高能電磁波包含γ射線、X射線與特定波長的紫外線。</p>
-
-<p>西里爾字母我有學過українська мова，所以русский язык我可以稍微看得懂。</p>
-
-<p>
-  <cite>《漢語語音學》</cite>探討了諸多同「漢語語音學」相關的學術議題，值得喜歡語言的同好們一讀。
-
-<p lang='en'>
-  <cite>Webster Dictionary</cite> defines ‘marriage’ as…
-
-<div class="coffeeEditor" ui-ace="{ 
-	mode: 'coffee', 
-	theme: 'monokai',
-	showGutter: false,
-	useWrapMode: true,
-	onChange: onEditorChange
-}" ng-model="coffee"></div>
-
-<div class="CSSEditor" ui-ace="{ 
-	mode: 'css', 
-	theme: 'monokai',
-	showGutter: false,
-	useWrapMode: true,
-	onChange: onEditorChange
-}" ng-model="css"></div>
-
-<!-- <div class="CSSEditor" ui-ace="{ 
-	mode: 'javascript', 
+<div ng-show="bookmarkletUrl!=undefined" class="codeviwer" ui-ace="{
+	mode: 'javascript',
 	theme: 'monokai',
 	showGutter: false,
 	useWrapMode: true
-}" ng-model="bookmarkletUrl"></div> -->
+}" ng-model="bookmarkletUrl"></div>
 
-<!-- <pre prism source="{{coffee}}" class="language-coffeescript"></pre> -->
+<!--<div class="CSSEditor" ui-ace="{ -->
+<!--mode: 'css', -->
+<!--theme: 'monokai',-->
+<!--showGutter: false,-->
+<!--useWrapMode: true-->
+<!--}" ng-model="css"></div>-->
 
 
-<span ng-show="err!=undefined">Syntax Error: {{err.message}} at column {{err.location.first_column}}, line {{err.location.first_line}}</span>
-<p ng-hide="err!=undefined">{{bookmarkletUrl}}"</p>
