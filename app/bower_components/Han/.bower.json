@@ -1,0 +1,39 @@
+{
+  "name": "Han",
+  "version": "3.0.2",
+  "homepage": "http://css.hanzi.co/",
+  "authors": [
+    "Chen Yijun (@ethantw)"
+  ],
+  "description": "The CSS typography framework optimised for Hanzi.",
+  "main": [
+    "han.css",
+    "han.js"
+  ],
+  "keywords": [
+    "Hanzi",
+    "CJK",
+    "normalize",
+    "typography",
+    "typesetting"
+  ],
+  "license": "http://css.hanzi.co/LICENSE.md",
+  "ignore": [
+    "**/.*",
+    "build",
+    "node_modules",
+    "test",
+    "package.json",
+    "component.json",
+    "CHANGELOG.md"
+  ],
+  "_release": "3.0.2",
+  "_resolution": {
+    "type": "version",
+    "tag": "v3.0.2",
+    "commit": "58703359d9bf34155fd9e7d11f05880afc37ae17"
+  },
+  "_source": "git://github.com/ethantw/Han.git",
+  "_target": "~3.0.2",
+  "_originalSource": "Han"
+}

@@ -1,0 +1,45 @@
+{
+  "name": "trigram-utils",
+  "main": "index.js",
+  "description": "Few language trigram utility functions",
+  "license": "MIT",
+  "keywords": [
+    "trigram",
+    "n-gram",
+    "language",
+    "utilities"
+  ],
+  "dependencies": {
+    "n-gram": "^0.1.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wooorm/trigram-utils.git"
+  },
+  "authors": [
+    "Titus Wormer <tituswormer@gmail.com>"
+  ],
+  "ignore": [
+    ".*",
+    "*.log",
+    "*.md",
+    "build/",
+    "components/",
+    "coverage/",
+    "node_modules/",
+    "test.js",
+    "component.json",
+    "package.json"
+  ],
+  "homepage": "https://github.com/wooorm/trigram-utils",
+  "version": "0.1.1",
+  "_release": "0.1.1",
+  "_resolution": {
+    "type": "version",
+    "tag": "0.1.1",
+    "commit": "8aa5ecb3547892cae3b4747a444655bf67281a91"
+  },
+  "_source": "git://github.com/wooorm/trigram-utils.git",
+  "_target": "^0.1.0",
+  "_originalSource": "trigram-utils"
+}

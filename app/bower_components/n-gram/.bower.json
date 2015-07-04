@@ -1,0 +1,48 @@
+{
+  "name": "n-gram",
+  "main": "n-gram.js",
+  "description": "Get n-grams from text",
+  "license": "MIT",
+  "keywords": [
+    "natural",
+    "language",
+    "n",
+    "gram",
+    "n-gram",
+    "unigram",
+    "bigram",
+    "trigram"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wooorm/n-gram.git"
+  },
+  "authors": [
+    "Titus Wormer <tituswormer@gmail.com>"
+  ],
+  "ignore": [
+    ".*",
+    "*.log",
+    "*.md",
+    "build/",
+    "components/",
+    "coverage/",
+    "node_modules/",
+    "benchmark.js",
+    "index.js",
+    "test.js",
+    "component.json",
+    "package.json"
+  ],
+  "homepage": "https://github.com/wooorm/n-gram",
+  "version": "0.1.2",
+  "_release": "0.1.2",
+  "_resolution": {
+    "type": "version",
+    "tag": "0.1.2",
+    "commit": "64fa4baa33d7d6b68d7d183798db00cb45b3b238"
+  },
+  "_source": "git://github.com/wooorm/n-gram.git",
+  "_target": "^0.1.0",
+  "_originalSource": "n-gram"
+}
